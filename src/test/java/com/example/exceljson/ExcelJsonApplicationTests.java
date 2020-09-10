@@ -27,6 +27,7 @@ class ExcelJsonApplicationTests {
     @Test
     void main() throws IOException {
 
+        //逐行讀取資料
         BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(json.getBytes(Charset.forName("utf8")))));
         String line;
         List<Data> datas = new ArrayList<>();
@@ -60,8 +61,15 @@ class ExcelJsonApplicationTests {
                 datas.add(data);
             }
         }
+        //excel存檔位址
+        //存檔位置格式-> /C:/temp/text.xlsx
+        //不能直接丟檔案到C槽如:/C:/text.xlsx 會爆掉!!
         String fileName = ExcelJsonApplicationTests.class.getResource("/").getPath()+"text.xlsx";
         String sheetName = "sheet1";
+        //寫出excel的地方
+        //Data.class = 控制Head的功能
+        //sheetName = 寫頁籤的地方
+        //datas = 逐行寫出資料
         EasyExcel.write(fileName, Data.class).sheet(sheetName).doWrite(datas);
     }
 
