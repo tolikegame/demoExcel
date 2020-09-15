@@ -9,7 +9,7 @@ import org.apache.poi.ss.usermodel.FillPatternType;
 
 @lombok.Data
 @HeadStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 255)
-public class Data {
+public class DataForJson {
     @ColumnWidth(15)
     @ExcelProperty(" ")
     private String column1;
