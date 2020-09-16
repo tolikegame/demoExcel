@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-//json轉excel
+//類json轉excel
 @SpringBootTest
 class ExcelJsonApplicationTests {
 
