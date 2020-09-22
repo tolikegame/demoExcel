@@ -30,6 +30,7 @@ public class ExcelJsonApplicationTests3 {
         this.export();
     }
 
+    //2版 一樣無法解掉1版的問題
     public String cover(String line, String flag, StringBuilder sss){
 
         if(count ==1){
@@ -89,28 +90,38 @@ public class ExcelJsonApplicationTests3 {
             Matcher matcher2 = pattern2.matcher(line);
 
 
+            //符合開頭是英文or數字: 的格式
             if(matcher1.find()){
                 i+=1;
             }
+            //符合結尾有 ', 的格式
             if(matcher2.find()){
                 i+=1;
             }
+            //特殊處理 為了跳過多行讀檔
             if(line.contains(": {")){
                 i+=2;
             }
 
+            //多行讀檔核心
             if(i == 1 || flag){
+                //只要進來就把flag開關打開
                 flag = true;
+                //串聯每一行讀入的資料
                 sss.append(line);
+                //
                 k=1;
+                //符合這個跑j=1規則
                 if(line.contains("=> {")){
                     j=1;
                     continue;
-                }else if(line.contains("=> [")){
+                }//符合這個跑j=2規則
+                else if(line.contains("=> [")){
                     j=2;
                     continue;
                 }
 
+                //j1,j2有跳出key時 flag就關閉
                 if(j==1){
                     if(String.valueOf(sss).contains("},")){
                         i=0;
@@ -134,8 +145,13 @@ public class ExcelJsonApplicationTests3 {
                     line = String.valueOf(sss);
                     sss = new StringBuilder();
                     flag = false;
-                }else if(k==1){
+                }
+                //為了處理此格式
+                //gameSourceNeedUpdate:
+                //    '游戏资源包需更新，本次下载约17MB，建议您在wifi环境下更新。',
+                else if(k==1){
                     i=0;
+                    k=0;
                     continue;
                 }
             }
@@ -155,6 +171,23 @@ public class ExcelJsonApplicationTests3 {
 //                line = String.valueOf(sss);
 //            }
 
+
+            //1版  無法解決此種格式
+            /**
+             * toObtain: (theme, value) => {
+             *     if (value > 0) {
+             *       switch (theme) {
+             *         case 'redbag02':
+             *           return ['恭喜您获得']
+             *         case 'redbag01':
+             *           return ['恭喜您', `获得了${value}元红包！`]
+             *       }
+             *     } else {
+             *       return ['很遗憾', '差一点就中奖了哟!']
+             *     }
+             *   },
+             *
+             */
 
             /**
              //如果有頓號 轉換成單引號

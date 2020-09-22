@@ -1,0 +1,65 @@
+
+範例特殊格式
+
+
+export default {
+  youCanStillTry: times => `，你还可以尝试${times}次`,
+
+  confirm: '确认',
+  teamRules02:
+    '<0>玩家C</0>发展的直属玩家也形成了自己的团队在瓜分<0>玩家C</0>的红利时，也同时壮大了<1>团队C</1>；<1>团队C</1>的球体逐步变大，抢占<2>团队A</2>的红利空间，以获取更多的红利。', // <0>玩家C</0>发展的直属玩家也形成了自己的团队在瓜分<0>玩家C</0>的红利时，也同时壮大了<1>团队C</1>；<1>团队C</1>的球体逐步变大，抢占<2>团队A</2>的红利空间，以获取更多的红利。
+
+  cancel: '取消',
+  gameSourceNeedUpdate:
+    '游戏资源包需更新，本次下载约17MB，建议您在wifi环境下更新。',
+  needReinstall: '本次更新需前往下载页重新安装应用程序。',
+  second: '秒',
+  },
+
+  fundCenterContainer: {
+    fundSynchronized: () => {
+      return `资金已完成同步 ${moment(new Date()).format(
+        'YYYY.MM.DD HH:mm:ss'
+      )}`
+    },
+
+  companyAndcounterOfTipsData: cont => [
+      '* 先查看要入款的银行账号信息，然后通过网上银行或手机银行进行转账，转账成功后再如实提交转账信息，财务专员查收到信息后会及时添加您的款项。',
+      '* 请尽可能选择同行办理转账，可快速到账。',
+      '* 存款完成后，保留单据以利核对并确保您的权益。',
+      `* 如出现充值失败或充值后未到账等情况，请联系${cont}获取帮助。`,
+    ],
+    bitcoinTipsData: cont => [
+      '* 为了方便系统快速完成转账，请输入正确的txId、交易时间，以加快系统入款速度。',
+      '* 建议您使用Internet Explorer 9以上、360浏览器、Firefox或Google Chrome等浏览器浏览。',
+      `* 如出现充值失败或充值后未到账等情况，请联系${cont}获取帮助。`,
+    ],
+
+  toObtain: (theme, value) => {
+    if (value > 0) {
+      switch (theme) {
+        case 'redbag02':
+          return ['恭喜您获得']
+        case 'redbag01':
+          return ['恭喜您', `获得了${value}元红包！`]
+      }
+    } else {
+      return ['很遗憾', '差一点就中奖了哟!']
+    }
+  },
+
+
+
+}
+
+////////
+正則
+'+
+用這個^ 要注意空白
+^[a-zA-Z]
+:{1}
+',{1}$
+
+^[a-zA-Z]+:+\',+$
+^([a-zA-Z]+)(:+)
+
